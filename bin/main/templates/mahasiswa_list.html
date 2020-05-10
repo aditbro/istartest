@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>List Mahasiswa</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="/css/mahasiswa.css"
+          th:href="@{/css/mahasiswa_list.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <p><a th:href="${prev_link}">prev</a> | <a th:href="${next_link}">next</a></p>
+      <table class="table" id="mhs-table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Jurusan</th>
+            <th scope="col">Fakultas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="mahasiswa: ${mahasiswas}" 
+            th:onclick="'javascript:moveTo(\'/view/mahasiswa/' + ${mahasiswa.id} + '\');'">
+            <td th:text="${mahasiswa.id}"></td>
+            <td th:text="${mahasiswa.nama}"></td>
+            <td th:text="${mahasiswa.namaJurusan}"></td>
+            <td th:text="${mahasiswa.namaFakultas}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script th:src="@{/js/mahasiswa_list.js}"></script>
+</body>
+</html>

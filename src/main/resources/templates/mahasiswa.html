@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Mahasiswa</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="/css/mahasiswa.css"
+          th:href="@{/css/mahasiswa.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form id="mhs-form" th:attr="action=${form_url}, method=${form_method}">
+        <input type="hidden" id="id_mahasiswa" th:value="${mahasiswa.id}">
+        <div class="form-group">
+          <label for="nama">Nama</label>
+          <input th:value="${mahasiswa.nama}" type="text" class="form-control" id="nama" placeholder="Nama Mahasiswa">
+        </div>
+        <div class="form-group">
+          <label for="jurusan">Jurusan</label>
+          <input th:value="${mahasiswa.namaJurusan}" type="text" class="form-control" id="jurusan" placeholder="Jurusan">
+        </div>
+        <div class="form-group">
+          <label for="fakultas">Fakultas</label>
+          <input th:value="${mahasiswa.namaFakultas}" type="text" class="form-control" id="fakultas" placeholder="Fakultas">
+        </div>
+        <button type="button" id="submit-btn" class="btn btn-primary" style="width: 100%;">Submit</button>
+        <button 
+          type="button" id="delete-btn" class="btn btn-danger" 
+          th:style="'display:' + @{${delete_visibility}}"
+        >
+          Delete
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<script th:src="@{/js/mahasiswa.js}"></script>
+</body>
+</html>

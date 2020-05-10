@@ -2,12 +2,9 @@ package com.aditya.istartest.controllers;
 
 import java.util.List;
 
-import javax.xml.crypto.Data;
-
 import com.aditya.istartest.models.mahasiswa.Mahasiswa;
 import com.aditya.istartest.models.mahasiswa.MahasiswaService;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
