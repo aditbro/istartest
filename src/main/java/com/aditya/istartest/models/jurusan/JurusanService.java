@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class JurusanService implements BaseService<Jurusan> {
@@ -22,6 +23,21 @@ public class JurusanService implements BaseService<Jurusan> {
         ArrayList<Map<String, String>> result = conn.executeQuery(query);
 
         return new Jurusan(result.get(0));
+    }
+
+    public List<Jurusan> getList() throws SQLException {
+        PreparedStatement query = conn.prepareStatement(
+            "SELECT id, nama, id_fakultas FROM jurusan"
+        );
+
+        ArrayList<Map<String, String>> result = conn.executeQuery(query);
+        ArrayList<Jurusan> listJrs = new ArrayList<>();
+
+        for(Map<String, String> jrs : result) {
+            listJrs.add(new Jurusan(jrs));
+        }
+
+        return listJrs;
     }
 
     public void add(Jurusan newJurusan) throws SQLException {

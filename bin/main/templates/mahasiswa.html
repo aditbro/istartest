@@ -25,11 +25,15 @@
         </div>
         <div class="form-group">
           <label for="jurusan">Jurusan</label>
-          <input th:value="${mahasiswa.namaJurusan}" type="text" class="form-control" id="jurusan" placeholder="Jurusan">
+          <select class="form-control" id="jurusan">
+            <option th:value="${mahasiswa.idJurusan}" th:text="${mahasiswa.namaJurusan}"></option>
+            <option th:each="i : ${list_jurusan}" th:value="${i.id}" th:text="${i.nama}">
+            </option>
+          </select>
         </div>
         <div class="form-group">
           <label for="fakultas">Fakultas</label>
-          <input th:value="${mahasiswa.namaFakultas}" type="text" class="form-control" id="fakultas" placeholder="Fakultas">
+          <input disabled th:value="${mahasiswa.namaFakultas}" type="text" class="form-control" id="fakultas" placeholder="Fakultas">
         </div>
         <button type="button" id="submit-btn" class="btn btn-primary" style="width: 100%;">Submit</button>
         <button 

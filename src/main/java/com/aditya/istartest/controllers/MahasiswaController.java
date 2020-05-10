@@ -2,6 +2,8 @@ package com.aditya.istartest.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.aditya.istartest.models.mahasiswa.Mahasiswa;
 import com.aditya.istartest.models.mahasiswa.MahasiswaService;
 
@@ -20,8 +22,9 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class MahasiswaController {
 	@GetMapping("/mahasiswa/{id}")
-	public Mahasiswa get(@PathVariable("id") Integer id) {
+	public Mahasiswa get(@PathVariable("id") Integer id, HttpServletRequest request) {
 		try {
+            LoginController.authenticate(request.getCookies());
 			MahasiswaService mService = new MahasiswaService();
 			return mService.getById(id);
 		} catch(Exception e) {
@@ -35,8 +38,9 @@ public class MahasiswaController {
     }
 
     @GetMapping("/mahasiswa")
-	public List<Mahasiswa> getList(@RequestParam Integer page) {
+	public List<Mahasiswa> getList(@RequestParam Integer page, HttpServletRequest request) {
 		try {
+            LoginController.authenticate(request.getCookies());
 			MahasiswaService mService = new MahasiswaService();
 			return mService.getList(page);
 		} catch(Exception e) {
@@ -50,8 +54,9 @@ public class MahasiswaController {
     }
 
     @PostMapping("/mahasiswa")
-	public ResponseEntity post(@RequestBody Mahasiswa mhs) {
+	public ResponseEntity post(@RequestBody Mahasiswa mhs, HttpServletRequest request) {
 		try {
+            LoginController.authenticate(request.getCookies());
 			MahasiswaService mhsService = new MahasiswaService();
             mhsService.add(mhs);
             return ResponseEntity.ok(HttpStatus.OK);
@@ -66,8 +71,9 @@ public class MahasiswaController {
     }
 
     @PatchMapping("/mahasiswa/{id}")
-	public ResponseEntity patch(@RequestBody Mahasiswa mhs) {
+	public ResponseEntity patch(@RequestBody Mahasiswa mhs, HttpServletRequest request) {
 		try {
+            LoginController.authenticate(request.getCookies());
 			MahasiswaService mhsService = new MahasiswaService();
             mhsService.update(mhs);
             return ResponseEntity.ok(HttpStatus.OK);
@@ -82,8 +88,9 @@ public class MahasiswaController {
     }
 
     @DeleteMapping("/mahasiswa/{id}")
-	public ResponseEntity delete(@PathVariable("id") Integer id) {
+	public ResponseEntity delete(@PathVariable("id") Integer id, HttpServletRequest request) {
 		try {
+            LoginController.authenticate(request.getCookies());
 			MahasiswaService mhsService = new MahasiswaService();
             mhsService.delete(id);
             return ResponseEntity.ok(HttpStatus.OK);
